@@ -10,16 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
-
-import static java.lang.Long.*;
 
 @SpringBootApplication
 @RestController
 public class DemoApplication {
 
-	private static List<Contacto> contactos=new ArrayList<>();
+	final private static List<Contacto> contactos=new ArrayList<>();
 
 	public static void main(String[] args) {
 		crearArrayContactos();
@@ -27,25 +24,20 @@ public class DemoApplication {
 	}
 
 	public static void crearArrayContactos(){
+		int contador = 0;
 		for (int i = 0; i < 10; i++) {
-			int contador = 0;
 			contador++;
 			Long ident= Long.parseLong(String.valueOf(contador));
-			String email = "contacto" + String.valueOf(contador)+ "@gmail.com";
-			String nombre = "Contacto"+String.valueOf(contador);
+			String email = "contacto" + (contador)+ "@gmail.com";
+			String nombre = "Contacto"+ (contador);
 			Random aleatorio = new Random();
 			Contacto contacto = new Contacto(
-					ident.longValue(),
+					ident,
 					nombre,
 					LocalDate.of(aleatorio.nextInt(10)+1970,aleatorio.nextInt(12)+1,aleatorio.nextInt(30)+1),
 					email,
 					Genero.Hombre);
-			if (contacto!=null) {
-				contactos.add(contacto);
-			} else{
-				System.out.println("Contacto no creado");
-			}
-//			System.out.println(contacto);
+			contactos.add(contacto);
 		}
 	}
 	@GetMapping

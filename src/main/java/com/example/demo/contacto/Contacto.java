@@ -10,9 +10,6 @@ public class Contacto {
     private String email;
     private Genero genero;
 
-    public Contacto() {
-    }
-
     public Contacto(String nombre, LocalDate fechaNacimiento, String email, Genero genero) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
